@@ -118,8 +118,7 @@ export default function DashboardPage() {
       <div className="flex flex-1 flex-col overflow-hidden">
         <Header
           onMenuClick={() => setSidebarOpen(true)}
-          // onCreateClick={() => router.push('/prompt/new/edit')}
-          onCreateClick={() => alert("Feature Adding Soon.. this is beta 0.0.1 [ Just Ui and Backend Connectivity ]")}
+          onCreateClick={() => router.push('/prompt')}
         />
 
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
