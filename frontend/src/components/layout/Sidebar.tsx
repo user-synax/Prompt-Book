@@ -1,10 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import {
-  FileText, Heart, Globe, Tag, LogOut, Sparkles, X, Menu,
+  FileText, Heart, Globe, LogOut, Sparkles, X,
   Code, PenTool, Palette, Megaphone, GraduationCap, Database, MoreHorizontal, Layers,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +30,6 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose, activeFilter, onFilterChange }: SidebarProps) {
   const { user, logout } = useAuth();
-  const pathname = usePathname();
 
   const handleFilterClick = (filter: string) => {
     onFilterChange(filter);
@@ -41,7 +39,7 @@ export default function Sidebar({ isOpen, onClose, activeFilter, onFilterChange 
   const navItems = [
     { id: 'all', label: 'All Prompts', icon: <FileText className="h-4 w-4" /> },
     { id: 'favorites', label: 'Favorites', icon: <Heart className="h-4 w-4" /> },
-    { id: 'public', label: 'Public Prompts', icon: <Globe className="h-4 w-4" /> },
+    { id: 'public', label: 'My Public Prompts', icon: <Globe className="h-4 w-4" /> },
   ];
 
   const categories = ['general', 'coding', 'writing', 'design', 'marketing', 'education', 'data', 'other'];
@@ -92,7 +90,16 @@ export default function Sidebar({ isOpen, onClose, activeFilter, onFilterChange 
             ))}
           </div>
 
+
           <Separator className="my-4 bg-white/10" />
+          <Link
+            href="/public-prompts"
+            onClick={onClose}
+            className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+          >
+            <Globe className="h-4 w-4" />
+            Explore Public Library
+          </Link>
 
           <div className="mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
             Categories
